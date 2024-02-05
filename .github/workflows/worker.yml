@@ -5,7 +5,7 @@ on:
 
 jobs:
   reusable:
-    uses: lpmg-playground/gh-reusable/.github/workflows/reusable.yml
+    uses: lpmg-playground/gh-reusable/.github/workflows/reusable.yml@main
     with:
       username: input-username-groo
     secrets:
