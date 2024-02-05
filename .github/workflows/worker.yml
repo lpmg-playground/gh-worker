@@ -1,0 +1,12 @@
+name: Caller Workflow
+
+on:
+  push:
+
+jobs:
+  reusable:
+    uses: lpmg-playground/gh-reusable/.github/workflows/reusable.yml@2d508f90e7b5ddd9b5a93c186dc6dd0d78170f16
+    with:
+      username: input-username-groo
+    secrets:
+      SECRET_SEED: world
