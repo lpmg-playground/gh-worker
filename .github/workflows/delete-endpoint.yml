@@ -4,9 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Choose a tag"
+        description: "Input a tag"
         required: true
-        options: ${{ steps.get_tags.outputs.tags }}
 
 jobs:
   get_tags:
@@ -25,5 +24,5 @@ jobs:
     runs-on: ubuntu-latest
     needs: [get_tags]
     steps:
-        - name: Print Selected Tag
-          run: echo "Selected Tag: ${{ needs.get_tags.outputs.tags }}"
+      - name: Print Selected Tag
+        run: echo "Selected Tag ${{ needs.get_tags.outputs.tags }}"
