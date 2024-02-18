@@ -18,6 +18,12 @@ jobs:
       - name: Get Tags
         run: |
           all_tags=$(git tag -l)
+          echo "All Tags $all_tags"
+        shell: bash
+
+      - name: Get Tags
+        run: |
+          all_tags=$(git tag -l)
           if [[ "$all_tags" =~ (^|[[:space:]])$INPUT_TAG($|[[:space:]]) ]]; then
             echo "Tag exists in the repository."
             exit 0
