@@ -10,22 +10,11 @@ env:
 jobs:
   upload_model:
     runs-on: ubuntu-latest
-    outputs:
-      MODEL_ENV: ${{ steps.variables.outputs.MODEL_ENV}}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set variables
-        id: variables
+      - name: Check if tag exists
         run: |
-          # Create model_env.json file if it doesn't exist
-          touch model_env.json
-
-          # Add the commit hash to the model_env.json file
-          jq --arg commit_hash "$COMMIT_HASH" '. + { "commit_hash": $commit_hash }' model_env.json > model_env_temp.json
-          mv model_env_temp.json model_env.json
-
-          echo "MODEL_ENV='$(jq -c . < model_env.json)'" >> $GITHUB_OUTPUT
-          echo $MODEL_ENV
+          echo "${{ env.COMMIT_HASH }}"
