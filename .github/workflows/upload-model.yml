@@ -3,6 +3,10 @@ name: Upload model
 on:
   workflow_dispatch:
   workflow_call:
+    outputs:
+      model_s3_path:
+        description: "The first output string"
+        value: ${{ jobs.upload_model.outputs.model_s3_path }}
 
 env:
   COMMIT_HASH: ${{ github.sha }}
@@ -11,7 +15,7 @@ jobs:
   upload_model:
     runs-on: ubuntu-latest
     outputs:
-      result: ${{ steps.return_s3_path.outputs.MODEL_S3_PATH }}
+      model_s3_path: ${{ steps.return_s3_path.outputs.MODEL_S3_PATH }}
 
     steps:
       - name: Checkout

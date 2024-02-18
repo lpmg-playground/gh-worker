@@ -13,4 +13,4 @@ jobs:
 
     steps:
       - name: Get upload model output
-        run: echo "Upload model result is ${{needs.upload-model.outputs.result}}"
+        run: echo "Upload model result is ${{needs.upload-model.outputs.model_s3_path}}"
