@@ -15,24 +15,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Get Tags
-        run: |
-          all_tags=$(git tag -l)
-          echo "All Tags $all_tags"
-        shell: bash
+      - uses: mukunku/tag-exists-action@v1.6.0
+        id: check-tag
+        with:
+          tag: ${{ inputs.tag }}
 
-      - name: Get Tags
-        run: |
-          all_tags=$(git tag -l)
-          if [[ "$all_tags" =~ (^|[[:space:]])$INPUT_TAG($|[[:space:]]) ]]; then
-            echo "Tag exists in the repository."
-            exit 0
-          else
-            echo "Tag does not exist in the repository."
-            exit 1
-          fi
-        env:
-          INPUT_TAG: ${{ github.event.inputs.tag }}
+      - run: echo "Tag exists!"
+        if: steps.check-tag.outputs.exists == 'true'
 
   build:
     runs-on: ubuntu-latest
