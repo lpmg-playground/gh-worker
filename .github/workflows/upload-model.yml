@@ -10,11 +10,14 @@ env:
 jobs:
   upload_model:
     runs-on: ubuntu-latest
+    outputs:
+      result: ${{ steps.return_s3_path.outputs.result }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check if tag exists
+      - name: Return s3 path
+        id: return_s3_path
         run: |
-          echo "${{ env.COMMIT_HASH }}"
+          echo "::set-output name=result::${{ env.COMMIT_HASH }}"
