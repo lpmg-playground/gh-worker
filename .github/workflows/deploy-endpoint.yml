@@ -17,6 +17,11 @@ jobs:
       - name: Get upload model output
         run: echo "Upload model result is ${{needs.upload-model.outputs.model_s3_path}}"
 
-      - name: 현재 태그 출력
-        run: |
-          echo "현재 태그: ${{ github.ref }}"
+      - name: Get tag
+        id: tag
+        uses: dawidd6/action-get-tag@v1
+        with:
+          strip_v: true
+
+      - name: Use tag
+        run: echo ${{steps.tag.outputs.tag}}
