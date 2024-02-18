@@ -20,5 +20,4 @@ jobs:
       - name: Return s3 path
         id: return_s3_path
         run: |
-          echo "MODEL_S3_PATH=${{ env.COMMIT_HASH }}" >> $GITHUB_OUTPUT
-          echo "$MODEL_S3_PATH"
+          echo "MODEL_S3_PATH=s3/folder/${{ env.COMMIT_HASH }}.model.tar" >> $GITHUB_OUTPUT
