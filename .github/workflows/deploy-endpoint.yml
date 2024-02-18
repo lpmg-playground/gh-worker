@@ -10,6 +10,7 @@ jobs:
   deploy:
     needs: upload-model
     runs-on: ubuntu-latest
+
     steps:
       - name: Get upload model output
         run: echo "Upload model result is ${{needs.upload-model.outputs.result}}"
