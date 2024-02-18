@@ -20,8 +20,14 @@ jobs:
         with:
           tag: ${{ inputs.tag }}
 
-      - run: echo "Tag exists!"
-        if: steps.check-tag.outputs.exists == 'true'
+      - name: Check if tag exists
+        run: |
+          if [[ "${{ steps.check-tag.outputs.exists }}" == "false" ]]; then
+            echo "Tag does not exist. Exiting..."
+            exit 1
+          else
+            echo "Tag exists!"
+          fi
 
   build:
     runs-on: ubuntu-latest
