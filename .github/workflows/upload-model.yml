@@ -21,4 +21,4 @@ jobs:
         id: return_s3_path
         run: |
           echo "MODEL_S3_PATH=${{ env.COMMIT_HASH }}" >> $GITHUB_OUTPUT
-          echo $MODEL_S3_PATH
+          echo "$MODEL_S3_PATH"
