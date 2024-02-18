@@ -11,7 +11,7 @@ jobs:
   upload_model:
     runs-on: ubuntu-latest
     outputs:
-      result: ${{ steps.return_s3_path.outputs.result }}
+      result: ${{ steps.return_s3_path.outputs.MODEL_S3_PATH }}
 
     steps:
       - name: Checkout
@@ -20,5 +20,5 @@ jobs:
       - name: Return s3 path
         id: return_s3_path
         run: |
-          echo "result=${{ env.COMMIT_HASH }}" >> $GITHUB_OUTPUT
-          echo 'result: ${{ steps.return_s3_path.outputs.result }}'
+          echo "MODEL_S3_PATH=${{ env.COMMIT_HASH }}" >> $GITHUB_OUTPUT
+          echo $MODEL_S3_PATH
