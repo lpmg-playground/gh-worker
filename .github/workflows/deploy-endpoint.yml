@@ -1,7 +1,9 @@
 name: Deploy endpoint
 
 on:
-  workflow_dispatch:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
   upload-model:
@@ -14,3 +16,7 @@ jobs:
     steps:
       - name: Get upload model output
         run: echo "Upload model result is ${{needs.upload-model.outputs.model_s3_path}}"
+
+      - name: 현재 태그 출력
+        run: |
+          echo "현재 태그: ${{ github.ref }}"
