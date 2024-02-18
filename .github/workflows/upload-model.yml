@@ -20,4 +20,5 @@ jobs:
       - name: Return s3 path
         id: return_s3_path
         run: |
-          echo "::set-output name=result::${{ env.COMMIT_HASH }}"
+          echo "result=${{ env.COMMIT_HASH }}" >> $GITHUB_OUTPUT
+          echo 'result: ${{ steps.return_s3_path.outputs.result }}'
