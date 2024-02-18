@@ -1,0 +1,15 @@
+name: Deploy endpoint
+
+on:
+  workflow_dispatch:
+
+jobs:
+  upload-model:
+    uses: ./.github/workflows/upload-model.yml
+
+  deploy:
+    needs: upload-model
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get upload model output
+        run: echo "Upload model result is ${{needs.upload-model.outputs.result}}"
